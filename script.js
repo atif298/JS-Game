@@ -3,6 +3,34 @@ const lights = document.querySelector(".reaction-test__lights")
 const timer = document.querySelector(".reaction-test__time")
 const scoreBoard = document.querySelector(".reaction-test__score")
 
+let startButtonTime = () => clickedStartButtonNow = new Date();
+let lightsGreenTime = () => lightGreenNow = new Date();
+let clickedLightsTime = () => clickedLightsNow = new Date();
+
+
+let randomLightsOn = () => setTimeout (beginLights, (Math.random() * 10000));
+
+let recordTime = () => {
+    clickedLightsTime();
+    let reactionTime = document.createElement("li");
+    reactionTime.innerHTML = Number(clickedLightsNow - lightGreenNow);
+    scoreBoard.appendChild(reactionTime);
+    lights.removeEventListener('click', recordTime);
+    }
+
+
+
+
+
+const beginLights = () => {
+    console.log(clickedStartButtonNow.getSeconds());
+    //#00c000 = ${green}
+    lights.style = "background-color: #00c000";
+    lightsGreenTime();
+    lights.addEventListener("click", recordTime);
+}
+
+
 const start = () => {
     console.log("start");
     //#ff0000 = ${red}
@@ -11,10 +39,16 @@ const start = () => {
     startStopBtn.removeEventListener("click", start);
     startStopBtn.addEventListener("click", stop);
     // startStopBtn.value = "stop";
-    handleLights();
+    //setTimout activates beginLights function
+    //Math.random is a random number between 0- 1
+    // * 10000to change milliseconds to seconds
+    startButtonTime();
+    randomLightsOn();
 }
 
 const stop = () =>{
+    clearTimeout(randomLightsOn);
+    lights.style = "background-color: #7c7c7c";
     console.log("stop");
     //#00c000 = ${green}
     startStopBtn.style = "background-color: #00c000";
@@ -23,10 +57,6 @@ const stop = () =>{
     startStopBtn.addEventListener("click", start);
     // startStopBtn.value = "start";
 
-}
-
-const handleLights = () => {
-    
 }
 
 startStopBtn.addEventListener("click", start);
