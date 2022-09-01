@@ -13,6 +13,15 @@ let randomLightsOn = () => setTimeout (beginLights, (Math.random() * 10000));
 
 
 
+const beginLights = () => {
+    console.log(clickedStartButtonNow.getSeconds());
+    //#00c000 = ${green}
+    lights.style = "background-color: #00c000";
+    lightsGreenTime();
+    lights.addEventListener("click", recordTime);
+}
+
+
 const start = () => {
     console.log("start");
     //#ff0000 = ${red}
