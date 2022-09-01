@@ -11,6 +11,15 @@ let clickedLightsTime = () => clickedLightsNow = new Date();
 let randomLightsOn = () => setTimeout (beginLights, (Math.random() * 10000));
 
 
+let recordTime = () => {
+    clickedLightsTime();
+    let reactionTime = document.createElement("li");
+    reactionTime.innerHTML = Number(clickedLightsNow - lightGreenNow);
+    scoreBoard.appendChild(reactionTime);
+    lights.removeEventListener('click', recordTime);
+    }
+
+
 
 
 const beginLights = () => {
